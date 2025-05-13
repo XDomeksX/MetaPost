@@ -6,4 +6,48 @@
     </style>
 
     <style name="Theme.MetaPost" parent="Base.Theme.MetaPost" />
+
+    <style name="night_mode_switch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/orange</item>
+        <item name="colorSwitchThumbNormal">@color/white</item>
+        <item name="android:colorForeground">#99E4D9D9</item>
+    </style>
+
+    <style name="notification_switch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/orange</item>
+        <item name="colorSwitchThumbNormal">@color/white</item>
+        <item name="android:colorForeground">#99E4D9D9</item>
+    </style>
+
+    <style name="security_privacy_switch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/orange</item>
+        <item name="colorSwitchThumbNormal">@color/white</item>
+        <item name="android:colorForeground">#99E4D9D9</item>
+    </style>
+
+    <style name="language_switch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/orange</item>
+        <item name="colorSwitchThumbNormal">@color/white</item>
+        <item name="android:colorForeground">#99E4D9D9</item>
+    </style>
+
+    <style name="text_switch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/orange</item>
+        <item name="colorSwitchThumbNormal">@color/white</item>
+        <item name="android:colorForeground">#99E4D9D9</item>
+    </style>
+
+    <style name="about_us_switch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/orange</item>
+        <item name="colorSwitchThumbNormal">@color/white</item>
+        <item name="android:colorForeground">#99E4D9D9</item>
+    </style>
+
+    <style name="logout_switch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/orange</item>
+        <item name="colorSwitchThumbNormal">@color/white</item>
+        <item name="android:colorForeground">#99E4D9D9</item>
+    </style>
+
+
 </resources>
