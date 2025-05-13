@@ -2,4 +2,18 @@
     <string name="app_name">MetaPost</string>
     <string name="password">Password</string>
     <string name="username">Username</string>
+    <string name="User">Admin</string>
+    <string name="email">email@gmail.com</string>
+    <string name="settings">Settings</string>
+    <string name="login">Login</string>
+    <string name="social_login">Social Login</string>
+    <string name="edit">Edit Profile</string>
+    <string name="night_mode">Night Mode</string>
+    <string name="notifications">Notifications</string>
+    <string name="security_privacy">Security and Privacy</string>
+    <string name="language">Language</string>
+    <string name="text">Text Size</string>
+    <string name="about_us">About Us</string>
+    <string name="logout">Logout</string>
+
 </resources>
