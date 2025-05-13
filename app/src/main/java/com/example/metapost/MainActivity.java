@@ -1,5 +1,6 @@
 package com.example.metapost;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
             if (enteredUsername.equals(TEST_USERNAME) && enteredPassword.equals(TEST_PASSWORD)) {
                 Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                 // TODO: Navigate to next screen or activity
+                Intent intent = new Intent(MainActivity.this, ChattingPageActivity.class);
+                startActivity(intent);
+                finish(); // zatvori login ekran da se ne možeš vratiti "back" gumbom
+
             } else {
                 Toast.makeText(MainActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
             }

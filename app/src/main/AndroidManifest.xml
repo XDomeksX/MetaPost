@@ -23,8 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ChattingPageActivity" />
+        <activity android:name=".SettingsActivity" />
 
-        <service
+    <service
             android:name=".firebase.MessagingService"
             android:exported="false">
             <intent-filter>
