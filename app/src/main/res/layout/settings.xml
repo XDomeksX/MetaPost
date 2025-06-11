@@ -5,12 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@color/background_settings"
+    android:id="@+id/settings_root_layout"
     tools:context=".MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        
+
         <ImageView
             android:id="@+id/back_button"
             android:layout_width="50dp"
@@ -18,7 +19,7 @@
             android:src="@drawable/back_btn"
             android:padding="12dp"
             />
-        
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,11 +30,11 @@
             android:textSize="20sp"
             />
     </RelativeLayout>
-    
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +46,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:src="@drawable/user_icon" />
-            
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -103,7 +104,7 @@
                         android:src="@drawable/night_mode"
                         android:background="@drawable/rounded_background"
                         />
-                    
+
                     <TextView
                         android:layout_marginStart="20dp"
                         android:layout_width="wrap_content"
