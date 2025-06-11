@@ -1,5 +1,4 @@
-// app/src/androidTest/java/com/example/metapost/LoginMediumTest.java
-package com.example.metapost; // This package MUST match your app's main package
+package com.example.metapost;
 
 import androidx.test.espresso.Espresso;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
@@ -20,37 +19,20 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.not;
 
-/**
- * Instrumentation tests for the Login Screen (MainActivity) of the MetaPost app.
- * These tests run on an Android device or emulator, simulating user interactions
- * and verifying UI behavior and navigation.
- */
-@RunWith(AndroidJUnit4.class) // Specifies that this test class should be run with Android's JUnit4 runner
-public class LoginMediumTest { // Renamed from LoginScreenInstrumentationTest for your clarification
 
-    /**
-     * JUnit Rule that launches a specific Activity (MainActivity in this case)
-     * before each test method in this class. This ensures that every test starts
-     * with a fresh instance of the Login Screen.
-     */
+@RunWith(AndroidJUnit4.class)
+public class LoginMediumTest {
+
     @Rule
     public ActivityScenarioRule<MainActivity> activityRule =
             new ActivityScenarioRule<>(MainActivity.class);
 
-    /**
-     * Test case 1: Verifies that the login button is initially disabled when both
-     * username and password fields are empty.
-     */
     @Test
     public void loginButton_initiallyDisabled_whenFieldsEmpty() {
         Espresso.onView(withId(R.id.login_button))
                 .check(matches(not(isEnabled())));
     }
 
-    /**
-     * Test case 2: Verifies that the login button becomes enabled once both
-     * username and password fields have some text input.
-     */
     @Test
     public void loginButton_enabled_whenFieldsPopulated() {
         Espresso.onView(withId(R.id.username_input))
@@ -61,11 +43,6 @@ public class LoginMediumTest { // Renamed from LoginScreenInstrumentationTest fo
                 .check(matches(isEnabled()));
     }
 
-    /**
-     * Test case 3: Verifies that an "Invalid username or password" Snackbar message
-     * is displayed when incorrect credentials are entered and the login button is clicked.
-     * This test is now reliable because it checks for a Snackbar, not a Toast.
-     */
     @Test
     public void incorrectCredentials_showsErrorMessage() {
         // Type incorrect username and password.
@@ -74,21 +51,12 @@ public class LoginMediumTest { // Renamed from LoginScreenInstrumentationTest fo
         Espresso.onView(withId(R.id.pass_input))
                 .perform(typeText("wrongpass"), closeSoftKeyboard());
 
-        // Click the login button.
         Espresso.onView(withId(R.id.login_button)).perform(click());
 
-        // --- THIS IS THE CRUCIAL CHANGE IN THE TEST ---
-        // Assert that a View with the text "Invalid username or password" is displayed.
-        // This will now correctly find the Snackbar.
         Espresso.onView(withText("Invalid username or password"))
                 .check(matches(isDisplayed()));
-        // --- END OF CRUCIAL CHANGE ---
     }
 
-    /**
-     * Test case 4: Verifies that upon entering correct credentials, the app navigates
-     * successfully from MainActivity (Login Screen) to ChattingPageActivity.
-     */
     @Test
     public void correctCredentials_navigatesToChattingPage() {
         Espresso.onView(withId(R.id.username_input))

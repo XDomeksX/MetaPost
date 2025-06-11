@@ -62,12 +62,9 @@ dependencies {
 
     // Unit Testing (JVM)
     testImplementation 'junit:junit:4.13.2'
-    // If you plan to use Mockito later for more complex unit tests, you can add this too:
-    // testImplementation 'org.mockito:mockito-core:4.8.0'
 
-    // ... your existing dependencies (including JUnit for unit tests)
 
-// Instrumentation Testing (Device/Emulator) - for Medium and E2E Tests
+    // Instrumentation Testing (Device/Emulator) - for Medium and E2E Tests
     androidTestImplementation 'androidx.test.ext:junit:1.1.5' // For JUnit-style tests on Android
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1' // Core Espresso APIs
     androidTestImplementation 'androidx.test:runner:1.5.2' // Test runner for Android

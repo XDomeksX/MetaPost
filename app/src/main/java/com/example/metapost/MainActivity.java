@@ -20,7 +20,6 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
-    // TEST_USERNAME and TEST_PASSWORD are no longer needed here as validacija class handles them.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +32,10 @@ public class MainActivity extends AppCompatActivity {
         EditText passwordInput = findViewById(R.id.pass_input);
         Button loginButton = findViewById(R.id.login_button);
 
-        // --- Start of Optional UI/UX Improvements ---
-        // Initially disable the login button.
-        // It will be enabled only when both username and password fields are filled.
+
         loginButton.setEnabled(false);
 
-        // Add TextChangedListeners to both input fields to enable/disable the login button.
-        // This ensures the user can only attempt login when both fields have text.
+
         TextWatcher loginFieldWatcher = new LoginFieldWatcher(usernameInput, passwordInput, loginButton);
         usernameInput.addTextChangedListener(loginFieldWatcher);
         passwordInput.addTextChangedListener(loginFieldWatcher);
@@ -72,26 +68,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Inner class to implement TextWatcher for enabling/disabling the login button.
-     * The login button is enabled only when both username and password fields are non-empty.
-     */
     private class LoginFieldWatcher implements TextWatcher {
         private EditText usernameInput;
         private EditText passwordInput;
         private Button loginButton;
 
-        // Constructor to inject the required views
         public LoginFieldWatcher(EditText usernameInput, EditText passwordInput, Button loginButton) {
             this.usernameInput = usernameInput;
             this.passwordInput = passwordInput;
             this.loginButton = loginButton;
         }
 
-        // Methods of TextWatcher interface
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            // Not needed for this functionality
         }
 
         @Override
