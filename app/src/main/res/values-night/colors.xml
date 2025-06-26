@@ -4,7 +4,7 @@
     <color name="icon_color">#FFFFFFFF</color> ```
     <color name="toolbarBackgroundColor">#2F2D2D</color> ```
     <color name="editTextBorderColor">#FFFFFFFF</color> ```
-    <color name="received_message_background_color">#2F2D2D</color> ```
+    <color name="received_message_background_color">#424242</color> ```
     <color name="card_background_color">#2F2D2D</color> ```
     <color name="bottom_nav_indicator_color">#FFFFFFFF</color> ```
 </resources>

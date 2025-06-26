@@ -5,9 +5,11 @@
     <style name="Theme.MetaPost" parent="Base.Theme.MetaPost" />
 
     <style name="CustomSwitchTheme" parent="Theme.AppCompat.Light">
-        <item name="colorControlActivated">@color/orange</item>
-        <item name="colorSwitchThumbNormal">@color/white</item>
-        <item name="android:colorForeground">#99E4D9D9</item>
+        <item name="colorControlActivated">@color/red</item>
+
+        <item name="colorSwitchThumbNormal">@color/red</item>
+
+        <item name="android:colorForeground">#EFEFEF</item>
     </style>
     <style name="CustomBottomNavIndicatorStyle" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:width">64dp</item>
