@@ -1,4 +1,4 @@
-package com.example.metapost;
+package com.example.metapost; // ili com.example.metapost
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +15,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.example.metapost.R;
+import com.example.metapost.RegisterActivity;
+import com.example.metapost.UserListActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -25,14 +28,14 @@ public class MainActivity extends AppCompatActivity {
     private TextView registerNowText;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
+    private TextView errorTextView; // Deklaracija
 
     @Override
     public void onStart() {
         super.onStart();
-        // Provjeri je li korisnik već prijavljen i ažuriraj UI.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            Intent intent = new Intent(getApplicationContext(), ChattingPageActivity.class);
+            Intent intent = new Intent(getApplicationContext(), UserListActivity.class);
             startActivity(intent);
             finish();
         }
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         boolean isNightMode = sharedPreferences.getBoolean("night_mode", true);
         if (isNightMode) {
@@ -48,60 +52,47 @@ public class MainActivity extends AppCompatActivity {
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
+
         setContentView(R.layout.activity_main);
 
-        // Inicijalizacija Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-
-        // Povezivanje s view elementima
         emailInput = findViewById(R.id.email_input);
         passwordInput = findViewById(R.id.pass_input);
         loginButton = findViewById(R.id.login_button);
         registerNowText = findViewById(R.id.register_now_text);
         progressBar = findViewById(R.id.login_progress_bar);
+        errorTextView = findViewById(R.id.error_text); // <-- KLJUČNA LINIJA KOJA JE VJEROJATNO NEDOSTAJALA
 
-        // Listener za tekst za registraciju
         registerNowText.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
 
-        // Listener za gumb za prijavu
         loginButton.setOnClickListener(v -> {
             progressBar.setVisibility(View.VISIBLE);
-            String email, password;
-            email = emailInput.getText().toString();
-            password = passwordInput.getText().toString();
+            errorTextView.setVisibility(View.GONE); // Sakrij staru grešku
 
-            if (TextUtils.isEmpty(email)) {
-                Toast.makeText(MainActivity.this, "Unesite email", Toast.LENGTH_SHORT).show();
+            String email = emailInput.getText().toString();
+            String password = passwordInput.getText().toString();
+
+            if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+                errorTextView.setText("Unesite email i lozinku");
+                errorTextView.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
                 return;
             }
-
-            if (TextUtils.isEmpty(password)) {
-                Toast.makeText(MainActivity.this, "Unesite lozinku", Toast.LENGTH_SHORT).show();
-                progressBar.setVisibility(View.GONE);
-                return;
-            }
-
-            // ... unutar loginButton.setOnClickListener ...
 
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, task -> {
                         progressBar.setVisibility(View.GONE);
                         if (task.isSuccessful()) {
-                            // Prijava uspješna, navigiraj na UserListActivity
                             Toast.makeText(MainActivity.this, "Prijava uspješna.", Toast.LENGTH_SHORT).show();
-
-                            // !!!!! PROMIJENI OVU LINIJU !!!!!
                             Intent intent = new Intent(getApplicationContext(), UserListActivity.class);
-
                             startActivity(intent);
                             finish();
                         } else {
-                            // Ako prijava ne uspije, prikaži poruku korisniku.
-                            Toast.makeText(MainActivity.this, "Autentifikacija neuspješna.", Toast.LENGTH_SHORT).show();
+                            errorTextView.setText("Autentifikacija neuspješna.");
+                            errorTextView.setVisibility(View.VISIBLE);
                         }
                     });
         });

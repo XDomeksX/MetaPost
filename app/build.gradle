@@ -52,7 +52,20 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.google.android.material:material:1.12.0'
 
-    // Biblioteka za slike - Glide <-- OVE DVIJE LINIJE SU NOVE
+    // Biblioteka za slike - Glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
+    // ------------------------------------------------------------------
+    // BIBLIOTEKE ZA TESTIRANJE - OVO JE DIO KOJI JE NEDOSTAJAO
+    // ------------------------------------------------------------------
+    // Za lokalne unit testove (src/test)
+    testImplementation 'junit:junit:4.13.2'
+
+    // Za instrumentirane UI testove (src/androidTest) - OVO VAM TREBA
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'androidx.test:runner:1.5.2'
+    androidTestImplementation 'androidx.test:rules:1.5.0'
+    // ------------------------------------------------------------------
 }

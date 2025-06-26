@@ -67,6 +67,16 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/error_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            android:visibility="gone"
+            tools:text="Ovdje ide poruka o grešci" />
+
+        <TextView
             android:id="@+id/register_now_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

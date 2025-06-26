@@ -1,20 +1,21 @@
 package com.example.metapost;
 
-import androidx.test.espresso.Espresso;
-import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
+import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
+
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
+import com.example.metapost.MainActivity;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
 public class EndToEndTest {
@@ -24,61 +25,75 @@ public class EndToEndTest {
             new ActivityScenarioRule<>(MainActivity.class);
 
     @Test
-    public void fullUserJourney_successful() {
-        // --- 1. Perform Successful Login to reach Chatting Page ---
-        Espresso.onView(withId(R.id.username_input))
-                .perform(typeText("admin"), closeSoftKeyboard());
-        Espresso.onView(withId(R.id.pass_input))
-                .perform(typeText("1234"), closeSoftKeyboard());
-        Espresso.onView(withId(R.id.login_button))
-                .perform(click());
+    public void fullUserJourneyTest() throws InterruptedException {
+        // --- NAJVAŽNIJA NAPOMENA ---
+        // U sljedeće dvije linije unesi ISPRAVAN EMAIL I LOZINKU
+        // za jednog od svojih korisnika na Firebaseu!
+        String validEmail = "domenikmilohaniceducation@gmail.com";
+        String validPassword = "yolo1234";
 
-        try {
-            Thread.sleep(1000); // Wait for 1 second
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
-        // Verify navigation to Chatting Page by checking for its main content layout ID.
-        Espresso.onView(withId(R.id.chatContent))
-                .check(matches(isDisplayed()));
+        // --- NOVI KORACI: PROVJERA REGISTRACIJSKOG EKRANA ---
+        // 0. Odlazak na ekran za registraciju
+        onView(withId(R.id.register_now_text)).perform(click());
+        Thread.sleep(1000);
 
-        Espresso.onView(withId(R.id.nav_settings)) // Using R.id.nav_settings from bottom_nav_menu.xml
-                .perform(click());
+        // Provjera jesmo li na ekranu za registraciju
+        onView(withId(R.id.register_button)).check(matches(isDisplayed()));
 
-        // Introduce a small delay to allow SettingsActivity to fully load and render its UI.
-        try {
-            Thread.sleep(1000); // Wait for 1 second
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        // Povratak na login ekran
+        onView(withId(R.id.login_now_text)).perform(click());
+        Thread.sleep(1000);
 
-        // Verify navigation to Settings Screen by checking for its root layout ID.
-        Espresso.onView(withId(R.id.settings_root_layout)) // Using the ID you added to settings.xml
-                .check(matches(isDisplayed()));
+        // Provjera jesmo li se vratili na Login ekran
+        onView(withId(R.id.login_button)).check(matches(isDisplayed()));
+        // --- KRAJ NOVIH KORAKA ---
 
-        Espresso.onView(withId(R.id.back_button)) // Using R.id.back_button from settings.xml
-                .perform(click());
 
-        try {
-            Thread.sleep(1000); // Wait for 1 second
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        // 1. Prijava na aplikaciju
+        onView(withId(R.id.email_input)).perform(typeText(validEmail), closeSoftKeyboard());
+        onView(withId(R.id.pass_input)).perform(typeText(validPassword), closeSoftKeyboard());
+        onView(withId(R.id.login_button)).perform(click());
+        Thread.sleep(2000);
 
-        Espresso.onView(withId(R.id.chatContent))
-                .check(matches(isDisplayed()));
+        // 2. Provjera jesmo li na ekranu s listom razgovora
+        onView(withId(R.id.metapod_chat_option)).check(matches(isDisplayed()));
 
-        Espresso.onView(withId(R.id.nav_logout)) // Using R.id.nav_logout from bottom_nav_menu.xml
-                .perform(click());
+        // 3. Odlazak na Postavke preko donje navigacije
+        onView(withId(R.id.nav_settings)).perform(click());
+        Thread.sleep(1000);
 
-        try {
-            Thread.sleep(1000); // Wait for 1 second
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        // 4. Provjera jesmo li na ekranu s postavkama
+        onView(withId(R.id.settings_root_layout)).check(matches(isDisplayed()));
 
-        Espresso.onView(withId(R.id.username_input))
-                .check(matches(isDisplayed()));
+        // 5. Ulazak u 'About Us' ekran
+        onView(withId(R.id.about_us_layout)).perform(click());
+        Thread.sleep(1000);
+
+        // 6. Provjera jesmo li na 'About Us' ekranu
+        onView(withId(R.id.toolbar_about)).check(matches(isDisplayed()));
+
+        // 7. Povratak u Postavke pomoću gumba za natrag
+        onView(withId(R.id.about_back_button)).perform(click());
+        Thread.sleep(1000);
+
+        // 8. Provjera jesmo li se vratili na ekran s postavkama
+        onView(withId(R.id.settings_root_layout)).check(matches(isDisplayed()));
+
+        // 9. Povratak na listu razgovora
+        onView(withId(R.id.back_button)).perform(click());
+        Thread.sleep(1000);
+
+        // 10. Ulazak u chat
+        onView(withId(R.id.metapod_chat_option)).perform(click());
+        Thread.sleep(1000);
+        onView(withId(R.id.chat_recycler_view)).check(matches(isDisplayed()));
+
+        // 11. Odjava iz aplikacije preko donje navigacije
+        onView(withId(R.id.nav_logout)).perform(click());
+        Thread.sleep(1000);
+
+        // 12. Provjera jesmo li se vratili na Login ekran
+        onView(withId(R.id.login_button)).check(matches(isDisplayed()));
     }
 }
