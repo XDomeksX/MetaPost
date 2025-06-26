@@ -17,5 +17,15 @@
     <string name="logout">Logout</string>
     <string name="no_account_register">Nemaš račun? Registriraj se</string>
     <string name="account_icon_description">Ikona korisničkog računa</string>
+    <string name="search_hint">Traži…</string>
+    <string name="user_name_metabot">MetaBot</string>
+    <string name="user_status_online">online</string>
+    <string name="back_button_desc">Natrag</string>
+    <string name="profile_image_desc">Profilna slika</string>
+    <string name="call_icon_desc">Poziv</string>
+    <string name="search_icon_desc">Pretraga</string>
+    <string name="arrow_up_desc">Prethodni rezultat</string>
+    <string name="arrow_down_desc">Sljedeći rezultat</string>
+    <string name="close_search_desc">Zatvori pretragu</string>
 
 </resources>

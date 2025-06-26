@@ -75,13 +75,18 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
+            // ... unutar loginButton.setOnClickListener ...
+
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, task -> {
                         progressBar.setVisibility(View.GONE);
                         if (task.isSuccessful()) {
-                            // Prijava uspješna, navigiraj na ChattingPageActivity
+                            // Prijava uspješna, navigiraj na UserListActivity
                             Toast.makeText(MainActivity.this, "Prijava uspješna.", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), ChattingPageActivity.class);
+
+                            // !!!!! PROMIJENI OVU LINIJU !!!!!
+                            Intent intent = new Intent(getApplicationContext(), UserListActivity.class);
+
                             startActivity(intent);
                             finish();
                         } else {

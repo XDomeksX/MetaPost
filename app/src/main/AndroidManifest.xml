@@ -28,6 +28,12 @@
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
+        <activity
+            android:name=".UserListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CallingActivity"
+            android:exported="false" />
 
     </application>
 
