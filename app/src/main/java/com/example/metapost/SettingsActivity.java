@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -38,7 +37,7 @@ public class SettingsActivity extends AppCompatActivity {
     private ImageView backBtn;
     private SwitchCompat nightModeSwitch, notificationsSwitch;
     private RelativeLayout securityLayout, languageLayout, aboutUsLayout;
-    private Button logoutButton; // <-- NOVA DEKLARACIJA
+    private Button logoutButton;
     private SharedPreferences sharedPreferences;
 
     private final ActivityResultLauncher<String> mGetContent = registerForActivityResult(
@@ -67,7 +66,7 @@ public class SettingsActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        // Povezivanje s View elementima
+        // Povezivanje svih View elemenata
         nameTextView = findViewById(R.id.user_name_text);
         emailTextView = findViewById(R.id.user_email_text);
         profileImageView = findViewById(R.id.profile_image_settings);
@@ -78,12 +77,13 @@ public class SettingsActivity extends AppCompatActivity {
         securityLayout = findViewById(R.id.security_privacy_layout);
         languageLayout = findViewById(R.id.language_layout);
         aboutUsLayout = findViewById(R.id.about_us_layout);
-        logoutButton = findViewById(R.id.logout_button); // <-- POVEZIVANJE NOVOG GUMBA
+        logoutButton = findViewById(R.id.logout_button);
 
-        // Postavljanje listenera
+        // Postavljanje listenera za gumbe
         backBtn.setOnClickListener(v -> finish());
         changeIconButton.setOnClickListener(v -> mGetContent.launch("image/*"));
 
+        // Poziv metoda za popunjavanje podataka i postavljanje ostalih listenera
         loadUserProfile();
         setupOptionListeners();
     }
@@ -111,10 +111,48 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
+    // KOMPLETNA METODA SA SVIM LISTENERIMA
     private void setupOptionListeners() {
-        // ... (listeneri za night mode, notifications, security, language, about us ostaju isti)
+        // --- NIGHT MODE ---
+        boolean isNightMode = sharedPreferences.getBoolean("night_mode", true);
+        nightModeSwitch.setChecked(isNightMode);
+        nightModeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("night_mode", isChecked);
+            editor.apply();
+            if (isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+        });
 
-        // NOVI LISTENER ZA LOGOUT GUMB
+        // --- NOTIFICATIONS ---
+        notificationsSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                Toast.makeText(this, "Notifikacije uključene", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Notifikacije isključene", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // --- SECURITY & PRIVACY ---
+        securityLayout.setOnClickListener(v -> {
+            Toast.makeText(this, "Prikaz postavki privatnosti (još nije implementirano)", Toast.LENGTH_SHORT).show();
+        });
+
+        // --- LANGUAGE ---
+        languageLayout.setOnClickListener(v -> {
+            Toast.makeText(this, "Promjena jezika još nije dostupna.", Toast.LENGTH_SHORT).show();
+        });
+
+        // --- ABOUT US ---
+        aboutUsLayout.setOnClickListener(v -> {
+            Intent intent = new Intent(SettingsActivity.this, AboutUsActivity.class);
+            startActivity(intent);
+        });
+
+        // --- LOGOUT ---
         logoutButton.setOnClickListener(v -> {
             mAuth.signOut();
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);

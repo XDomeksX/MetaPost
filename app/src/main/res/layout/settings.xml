@@ -237,7 +237,7 @@
                         android:layout_centerInParent="true"
                         android:layout_marginStart="20dp"
                         android:layout_toEndOf="@id/about_us_icon"
-                        android:text="About Us"
+                        android:text="O nama"
                         android:textColor="@color/primaryTextColor"
                         android:textStyle="bold" />
                 </RelativeLayout>
