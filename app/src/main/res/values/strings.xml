@@ -15,5 +15,7 @@
     <string name="text">Text Size</string>
     <string name="about_us">About Us</string>
     <string name="logout">Logout</string>
+    <string name="no_account_register">Nemaš račun? Registriraj se</string>
+    <string name="account_icon_description">Ikona korisničkog računa</string>
 
 </resources>

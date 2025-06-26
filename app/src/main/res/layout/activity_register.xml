@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_background"
     android:gravity="center"
     android:padding="16dp"
-    tools:context=".MainActivity">
+    tools:context=".RegisterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,19 +14,22 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:src="@drawable/account_icon"
-            android:contentDescription="@string/account_icon_description" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kreiraj Račun"
+            android:textColor="@color/white"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="40dp"/>
 
         <EditText
-            android:id="@+id/email_input"
+            android:id="@+id/email_input_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:background="@drawable/border_background"
-            android:hint="@string/email"
+            android:hint="Email"
             android:inputType="textEmailAddress"
             android:padding="18dp"
             android:textColor="@color/white"
@@ -36,12 +37,12 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/pass_input"
+            android:id="@+id/pass_input_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/border_background"
-            android:hint="@string/password"
+            android:hint="Lozinka (min. 6 znakova)"
             android:inputType="textPassword"
             android:padding="18dp"
             android:textColor="@color/white"
@@ -49,28 +50,28 @@
             android:textSize="20sp" />
 
         <ProgressBar
-            android:id="@+id/login_progress_bar"
+            android:id="@+id/register_progress_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:visibility="gone" />
 
         <Button
-            android:id="@+id/login_button"
+            android:id="@+id/register_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="27dp"
             android:backgroundTint="@color/white"
             android:padding="18dp"
-            android:text="@string/login"
+            android:text="Registriraj se"
             android:textColor="#0A2426"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/register_now_text"
+            android:id="@+id/login_now_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/no_account_register"
+            android:text="Već imaš račun? Prijavi se"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:layout_marginTop="24dp"
