@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_settings"
+    android:background="@color/primaryBackgroundColor"
     tools:context=".CallingActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -23,7 +23,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
         android:text="MetaBot"
-        android:textColor="@color/white"
+        android:textColor="@color/primaryTextColor"
         android:textSize="28sp"
         android:textStyle="bold" />
 

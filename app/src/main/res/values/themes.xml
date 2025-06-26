@@ -1,53 +1,19 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
     <style name="Base.Theme.MetaPost" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
     <style name="Theme.MetaPost" parent="Base.Theme.MetaPost" />
 
-    <style name="night_mode_switch" parent="Theme.AppCompat.Light">
+    <style name="CustomSwitchTheme" parent="Theme.AppCompat.Light">
         <item name="colorControlActivated">@color/orange</item>
         <item name="colorSwitchThumbNormal">@color/white</item>
         <item name="android:colorForeground">#99E4D9D9</item>
     </style>
-
-    <style name="notification_switch" parent="Theme.AppCompat.Light">
-        <item name="colorControlActivated">@color/orange</item>
-        <item name="colorSwitchThumbNormal">@color/white</item>
-        <item name="android:colorForeground">#99E4D9D9</item>
+    <style name="CustomBottomNavIndicatorStyle" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:width">64dp</item>
+        <item name="android:height">32dp</item>
+        <item name="android:color">@color/bottom_nav_indicator_color</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.Material3.NavigationBarView.ActiveIndicator</item>
     </style>
-
-    <style name="security_privacy_switch" parent="Theme.AppCompat.Light">
-        <item name="colorControlActivated">@color/orange</item>
-        <item name="colorSwitchThumbNormal">@color/white</item>
-        <item name="android:colorForeground">#99E4D9D9</item>
-    </style>
-
-    <style name="language_switch" parent="Theme.AppCompat.Light">
-        <item name="colorControlActivated">@color/orange</item>
-        <item name="colorSwitchThumbNormal">@color/white</item>
-        <item name="android:colorForeground">#99E4D9D9</item>
-    </style>
-
-    <style name="text_switch" parent="Theme.AppCompat.Light">
-        <item name="colorControlActivated">@color/orange</item>
-        <item name="colorSwitchThumbNormal">@color/white</item>
-        <item name="android:colorForeground">#99E4D9D9</item>
-    </style>
-
-    <style name="about_us_switch" parent="Theme.AppCompat.Light">
-        <item name="colorControlActivated">@color/orange</item>
-        <item name="colorSwitchThumbNormal">@color/white</item>
-        <item name="android:colorForeground">#99E4D9D9</item>
-    </style>
-
-    <style name="logout_switch" parent="Theme.AppCompat.Light">
-        <item name="colorControlActivated">@color/orange</item>
-        <item name="colorSwitchThumbNormal">@color/white</item>
-        <item name="android:colorForeground">#99E4D9D9</item>
-    </style>
-
 
 </resources>

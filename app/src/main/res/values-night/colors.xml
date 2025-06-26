@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryBackgroundColor">#1B1A1A</color> <color name="secondaryBackgroundColor">#2F2D2D</color> <color name="primaryTextColor">#FFFFFFFF</color> <color name="secondaryTextColor">#B3FFFFFF</color>
+    <color name="icon_color">#FFFFFFFF</color> ```
+    <color name="toolbarBackgroundColor">#2F2D2D</color> ```
+    <color name="editTextBorderColor">#FFFFFFFF</color> ```
+    <color name="received_message_background_color">#2F2D2D</color> ```
+    <color name="card_background_color">#2F2D2D</color> ```
+    <color name="bottom_nav_indicator_color">#FFFFFFFF</color> ```
+</resources>

@@ -27,5 +27,7 @@
     <string name="arrow_up_desc">Prethodni rezultat</string>
     <string name="arrow_down_desc">Sljedeći rezultat</string>
     <string name="close_search_desc">Zatvori pretragu</string>
+    <string name="home">Home</string>
+    <string name="chat">Chat</string>
 
 </resources>

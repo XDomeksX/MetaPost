@@ -1,6 +1,8 @@
 package com.example.metapost;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,6 +48,13 @@ public class ChattingPageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
+        boolean isNightMode = sharedPreferences.getBoolean("night_mode", true);
+        if (isNightMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
         setContentView(R.layout.chatting_page);
 
         mAuth = FirebaseAuth.getInstance();
@@ -72,10 +82,16 @@ public class ChattingPageActivity extends AppCompatActivity {
     }
 
     private void setupToolbarListeners() {
-        backArrow.setOnClickListener(v -> finish());
-        callIcon.setOnClickListener(v -> {
-            Intent intent = new Intent(ChattingPageActivity.this, CallingActivity.class);
+        backArrow.setOnClickListener(v -> {
+            // Kreiramo eksplicitnu namjeru (Intent) da se vratimo na UserListActivity
+            Intent intent = new Intent(ChattingPageActivity.this, UserListActivity.class);
+
+            // Ovi flagovi osiguravaju da ne stvaramo duple ekrane i da se navigacija ponaša ispravno.
+            // Govore Androidu: "Ako UserListActivity već postoji, samo se prebaci na njega."
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
             startActivity(intent);
+            finish(); // Zatvaramo trenutni chat ekran
         });
         searchIcon.setOnClickListener(v -> {
             normalToolbarLayout.setVisibility(View.GONE);

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_settings"
+    android:background="@color/primaryBackgroundColor"
     tools:context=".ChattingPageActivity">
 
     <include
@@ -19,7 +19,8 @@
         android:background="@color/red"
         app:itemIconTint="@color/bottom_nav_item_tint"
         app:itemTextColor="@color/bottom_nav_item_tint"
-        app:menu="@menu/bottom_nav_menu" />
+        app:menu="@menu/bottom_nav_menu"
+        app:itemActiveIndicatorStyle="@style/CustomBottomNavIndicatorStyle"/>
 
     <RelativeLayout
         android:id="@+id/input_layout"
@@ -38,8 +39,8 @@
             android:hint="Napiši poruku..."
             android:inputType="textMultiLine"
             android:padding="12dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white" />
+            android:textColor="@color/primaryTextColor"
+            android:textColorHint="@color/primaryTextColor" />
 
         <ImageButton
             android:id="@+id/send_button"
@@ -51,7 +52,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Pošalji poruku"
             android:src="@drawable/ic_send"
-            app:tint="@color/white" />
+            app:tint="@color/icon_color" />
 
     </RelativeLayout>
 
